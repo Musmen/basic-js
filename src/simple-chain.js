@@ -1,27 +1,32 @@
 const chainMaker = {
   valueArray: [],
+
   getLength() {
-    return chainMaker.valueArray.length;
+    return this.valueArray.length;
   },
+
   addLink(value = ' ') {
-    chainMaker.valueArray.push(value);
-    return chainMaker;
+    this.valueArray.push(value);
+    return this;
   },
+
   removeLink(position) {
-    if (!Number.isInteger(position) ||  (position < 1) || (position >= chainMaker.getLength())) {
-      chainMaker.valueArray = [];
+    if (!Number.isInteger(position) ||  (position < 1) || (position >= this.getLength())) {
+      this.valueArray = [];
       throw new Error();
     }
-    chainMaker.valueArray.splice(position - 1, 1);
-    return chainMaker;
+    this.valueArray.splice(position - 1, 1);
+    return this;
   },
+
   reverseChain() {
-    chainMaker.valueArray.reverse();
-    return chainMaker;
+    this.valueArray.reverse();
+    return this;
   },
+  
   finishChain() {
-    const result = chainMaker.valueArray.slice();
-    chainMaker.valueArray = [];
+    const result = this.valueArray.slice();
+    this.valueArray = [];
     return result.map((item, index) => {
       return `${index ? '~~' : ''}( ${item} )`;
     }).join('');
